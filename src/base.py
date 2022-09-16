@@ -29,4 +29,30 @@ def change_to_base(n: int, b: int) -> str:
     '1F'
     """
     assert 2 <= b <= 16
-    return ''  # FIXME: return n in the right base
+
+    n_base = []
+    negative = False
+
+    if n == 0:
+        n_base.append('0')
+
+    elif n < 0:
+        negative = True
+        n *= -1
+
+    while n:
+        n_base.append(digits[n % b])
+        n //= b
+    
+    if negative == True:
+        n_base.append('-')
+
+    # reverse string
+    n_str = ''
+    n_str = ''.join(n_base[::-1])
+
+
+    return n_str  # FIXME: return n in the right base
+
+
+print(change_to_base(31, 16))
